@@ -4,12 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
-
+I'm a software engineer out of Baltimore interested in learning and creating as much as I can. This blog serves as a chronicle of my projects as well as some of the things I have learned along the way.
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[alexk307@gmail.com](mailto:alexk307@gmail.com)
