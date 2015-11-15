@@ -27,7 +27,7 @@ pip install requests
 pip install pip install beautifulsoup4
 ```
 
-First let's take the URL for the Eagles that season, and grab it's HTML. If we get a good request, we'll create a `BeautifulSoup` object to parse it.
+Let's take the URL for the Eagles that season, and grab it's HTML. If we get a good request, we'll create a `BeautifulSoup` object to parse it.
 
 ```
 season_url = 'http://www.pro-football-reference.com/teams/phi/2004.htm'
@@ -39,7 +39,7 @@ if '404' in res.url:
 soup = BeautifulSoup(res.text)
 ```
 
-Now we have this `soup` object which we can start parsing with. In this case, we want to find the `div` element that has the class `table_container`, and the id `div_team_gamelogs`. After we find that div, we want all of the `td` elements inside of it. Pro Football Reference uses the same class (`table_container`) to hold all of it's tables for future reference.
+With this `soup` object we can now start parsing the data. In this case, we want to find the `div` element that has the class `table_container`, and the id `div_team_gamelogs`. After we find that div, we want all of the `td` elements inside of it. Pro Football Reference uses the same class (`table_container`) to hold all of it's tables for future reference.
 
 ```
 parsed = soup.findAll(
@@ -51,7 +51,7 @@ parsed = soup.findAll(
 rows = parsed[0].findAll('td')
 ```
 
-Now we have a flat list of all of the data in this table. Let's break it into rows so we have data on each individual game.
+We should have a flat list of all of the data in this table. Let's break it into rows so we have data on each individual game.
 
 ```
 # After 1994, they added 3 more columns
@@ -84,7 +84,7 @@ Beautiful. Now we have something that looks like this...
 ['3', 'Sun', 'September 26', 'boxscore', 'W', '', '3-0', '@', 'Detroit Lions', '30', '13', '19', '402', '343', '59', '1', '15', '256', '179', '77', '1', '6.31', '11.00', '-0.16']...]
 ```
 
-Now to grab data from any other team for any other year, we just need to edit the URL. A simple string formatting will do...
+To grab data from any other team for any other year, we just need to edit the URL. A simple string formatting will do...
 
 ```
 season_url = 'http://www.pro-football-reference.com/teams/%s/%s.htm' % (team, year)
