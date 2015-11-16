@@ -20,7 +20,9 @@ it doesn't have an API. Not a problem, let's get started!
 First let's take a look at the season page for the [2004 Eagles](http://www.pro-football-reference.com/teams/phi/2004.htm),
 they were pretty good that year, and even made it to the superbowl. The data that we're interested in today is the season summary i.e. a summary of every game that season.
 
-You'll need requests and beautiful soup for this project. [Requests](http://docs.python-requests.org/en/latest/) to make the HTTP GET request for the data, and [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) to Parse the data.
+![](/images/gamelog.png)
+
+You'll need [Requests](http://docs.python-requests.org/en/latest/) to make the HTTP GET request for the data, and [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) to parse the data.
 
 ```
 pip install requests
@@ -39,7 +41,9 @@ if '404' in res.url:
 soup = BeautifulSoup(res.text)
 ```
 
-With this `soup` object we can now start parsing the data. In this case, we want to find the `div` element that has the class `table_container`, and the id `div_team_gamelogs`. After we find that div, we want all of the `td` elements inside of it. Pro Football Reference uses the same class (`table_container`) to hold all of it's tables for future reference.
+With this `soup` object we can now start parsing the data. Let's take a look at the HTML in Chrome. If you hover over the code in the inspector, it will show you what part of the page it corresponds to. In this case, we want to find the `div` element that has the class `table_container`, and the id `div_team_gamelogs`. After we find that div, we want all of the `td` elements inside of it. Pro Football Reference uses the same class (`table_container`) to hold all of it's tables for future reference.
+
+![](/images/html.png)
 
 ```
 parsed = soup.findAll(
