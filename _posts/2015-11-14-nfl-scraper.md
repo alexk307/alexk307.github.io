@@ -26,7 +26,7 @@ You'll need [Requests](http://docs.python-requests.org/en/latest/) to make the H
 
 ```
 pip install requests
-pip install pip install beautifulsoup4
+pip install beautifulsoup4
 ```
 
 Let's take the URL for the Eagles that season, and grab it's HTML. If we get a good request, we'll create a `BeautifulSoup` object to parse it.
