@@ -25,7 +25,7 @@ Now let's look at turnover margin versus win percentage which is the number of w
 With an even turnover margin, teams have historically had a 50/50 shot of winning, and as the turnover margin increases, we see a definite increase in win percentage.
 Interestingly enough, at a turnover margin of +7, we see a tiny dip in the win percentage. At first I thought my numbers might be wrong but after double checking, there have been 3 teams since 1960 to have lost a game after a +7 turnover margin performance:
 
-- 1961 Minnesota Vikings vs Ssan Francisco 49ers
+- 1961 Minnesota Vikings vs San Francisco 49ers
 - 1967 Chicago Bears vs Green Bay Packers
 - 1983 Tennessee Titans vs Pittsburgh Steelers
 
