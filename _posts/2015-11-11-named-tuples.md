@@ -7,20 +7,20 @@ I started reading <a href="http://www.amazon.com/Fluent-Python-Luciano-Ramalho/
 
 Within the first few pages, Ramalho introduces a concept called <code>namedtuple</code>. Found within the <code>collections</code> library, <code>namedtuple</code> allows you to create instances of classes that you can define in just one line.
 
-```
+{% highlight python %}
 from collections import namedtuple
 Person = namedtuple('Person', ['name', 'gender', 'date_of_birth'])
-```
+{% endhighlight %}
 
 I just created a class called 'Person' and gave it 3 attributes, but I could have named it anything or gave it any number of attributes. This may seem trivial and useless but consider the following equivalent python code:
 
-```
+{% highlight python %}
 class Person:
     def __init__(self, name, gender, date_of_birth):
         self.name = name
         self.gender = gender
         self.date_of_birth = date_of_birth
-```
+{% endhighlight %}
 
 Minus the import statement, I've condensed 5 lines into 1, and also made it more readable at the same time.
 
@@ -28,7 +28,7 @@ The reason I found this so interesting was because of it's resemblance to <a hre
 
 These `namedtuples` are also immutable, and provide an alternative to organizing your data with `dict`s in python. They provide a much easier way of keeping your data structures and classes clean and easy to maintain by encapsulating your data in an object in just a few lines. Modeling data with multiple classes becomes much easier and more intuitive when combining namedtuples with regular classes. Here's a simple `Book` class that uses a `Page` `namedtuple` to encapsulate the pages in a book.
 
-```
+{% highlight python %}
 Page = namedtuple('Page', ['number', 'contents'])
 class Book:
     def __init__(self, pages):
@@ -39,21 +39,21 @@ class Book:
 
     def get_page(number):
         return self.pages[number].contents
-```
+{% endhighlight %}
 
 It also comes with some helpful debugging benefits baked right in:
 
-```
+{% highlight python %}
 >>> p = Person('Alex', 'Male', '1/1/1999')
  Person('Alex', 'Male', '1/1/1999')
-```
+{% endhighlight %}
 
 The `__str__` method automatically is created and returns a string representation of the instance of the object. This means that you could just plug this into a log statement and get a meaningful message.
 
-```
+{% highlight python %}
 >>> Log.debug('Received information about person: %s' % p)
  'Received information about person: Person('Alex', 'Male', '1/1/1999')'
-```
+{% endhighlight %}
 
 The benefit to this paradigm is that you can write clear and concise code without sacrificing organization. I haven't seen any Akka-like uses for these but I would be interested in hearing about them.
 More reading <a href="https://docs.python.org/2/library/collections.html#collections.namedtuple">here</a>!

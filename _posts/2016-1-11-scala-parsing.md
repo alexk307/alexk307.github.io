@@ -9,22 +9,22 @@ In comes [Argonaut](http://argonaut.io/), a Scala JSON parsing library that enab
 
 Enough talk, let's get started. Grab argonaut using SBT:
 
-```
+{% highlight scala %}
 "io.argonaut" %% "argonaut" % "6.0.4"
-```
+{% endhighlight %}
 
 Let's define a simple schema that might represent a person
 
-```
+{% highlight scala %}
 {
     'first_name': <String>,
     'last_name': <String>
 }
-```
+{% endhighlight %}
 
 To parse this into a case class, all we need is a few lines of Scala
 
-```
+{% highlight scala %}
 import argonaut._
 import Argonaut._
 
@@ -36,11 +36,11 @@ implicit def PersonCodecJson: CodecJson[Person] = casecodec2(Person.apply, Perso
 
 // Parse our message into a Person object
 Parse.decodeOption[Person](message)
-```
+{% endhighlight %}
 
 That was too easy, let's make this more difficult and add a nested JSON structure within our Person schema.
 
-```
+{% highlight scala %}
 {
     'first_name': <String>,
     'last_name': <String>,
@@ -49,11 +49,11 @@ That was too easy, let's make this more difficult and add a nested JSON structur
         'id': <Int>
     }
 }
-```
+{% endhighlight %}
 
 all we have to do is make sure we write our new case class, define the codec, and add it to our existing `Person` case class
 
-```
+{% highlight scala %}
 import argonaut._
 import Argonaut._
 
@@ -65,18 +65,18 @@ implicit def LocationCodecJson: CodecJson[Location] = casecodec2(Location.apply,
 implicit def PersonCodecJson: CodecJson[Person] = casecodec3(Person.apply, Person.unapply)("first_name", "last_name", "location")
 
 Parse.decodeOption[Person](message)
-```
+{% endhighlight %}
 
 Two things to note, first the change in numbers following the `casecodec` method. The pattern is `casecodec<n>` where n is the number of arguments to apply to the case class. Just be sure to increment this number when adding a new parameter to your case class. Second, we made both of our classes implement an abstract class we defined as `Serializable` which is necessary when you want to define nested case classes like this.
 
 Let's add a new parameter to our `Person` object called `middle_name`. Some people don't have middle names or choose not to use them
 
-```
+{% highlight scala %}
 abstract class Serializable
 case class Person(first_name: String, middle_name: Option[String], last_name: String, place_of_birth: Location) extends Serializable
 
 implicit def PersonCodecJson: CodecJson[Person] = casecodec4(Person.apply, Person.unapply)("first_name", "middle_name", "last_name", "location")
-```
+{% endhighlight %}
 
 The way to represent an optional parameter is to use an `Option` (duh). Just wrap your parameter in an `Option` in your case class and Argonaut will take care of the rest for you.
 
